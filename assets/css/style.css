@@ -1,0 +1,11 @@
+
+.controls{
+text-align: right;
+margin: 10px;
+}
+footer {
+    display: flex;
+    justify-content: center;
+    padding: 4px;
+    color: #fff;
+}
