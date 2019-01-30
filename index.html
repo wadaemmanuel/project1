@@ -21,19 +21,26 @@
         <div class = "playerTwo"></div>
     </div>
 
-    <div class = "dashboard">
-        
-        <div class = "controls">
-            <h2>controls</h2>
-
-                <p>Punch: A /Reverse Kick: E /Hadoken: S /Kick: Z </p>
-                <p>Jump: ▲ /Walk: ◀,► /Crouch: ▼</p>
-        </div>
-
-        <footer>
-                © 2019 team ginyu force
-        </footer>
-    </div>
+    <input id="api" type="button" value="Submit">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
+        <script type="text/javascript" src="app.js"></script> 
+        <p id="timer"></p>
+        <input type="text" id="playerName" readonly><br>
+        <input type="text" id="caracterName"><br>
+        <button id="addPlayer" class="addPlayer">Add Player1</button><br>
+        <button id="addPlayer2" class="addPlayer">Add Player2</button><br>
+        <button id="play" >Play</button>
+        <button id="reset" >Reset players</button><br>
+        <button id="player1" class="player">Player1</button>
+        <input type="text" id="player1Health"><br>
+        <button id="player2" class="player">Player2</button>
+        <input type="text" id="player2Health"><br>
+        <input type="text" id="playerUpdate"><br>
+        <button id="updatePlayer">Update</button><br>
+        <button id="updatePosition">Update Position</button><br>
+        <input type="text" id="playerDelete"><br>
+        <button id="deletePlayer">Delete</button>
 </body>
 </html>
 
