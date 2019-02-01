@@ -35,6 +35,30 @@ $(document).ready(function () {
 
     }
 
+    function isBehind() {
+        p1Pos = p1.offset();
+        p2Pos = p2.offset();
+        if (p2Pos.left < p1Pos.left) {
+            p1.addClass('walking').css({
+                transform: 'scale(-1, 1)'
+            });
+            p2.addClass('walking').css({
+                transform: 'scale(1, 1)'
+            });
+        } else {
+            p1.addClass('walking').css({
+                transform: 'scale(1, 1)'
+            });
+            p2.addClass('walking').css({
+                transform: 'scale(-1, 1)'
+            });
+
+        }
+
+
+
+    }
+
     function playerSel(player) {
         if (player === 2) {
             p1 = $('.bob');
@@ -132,7 +156,7 @@ $(document).ready(function () {
 
     }
 
-    
+
 
 
 
@@ -372,30 +396,28 @@ $(document).ready(function () {
 
         //moves
         if (e.keyCode === 39) {
-            $('.playerOne').addClass('walking').css({
+            p1.addClass('walking').css({
                 marginLeft: '+=8px'
             });
+            isBehind();
 
 
         }
-        if (e.keyCode === 38) {
-            // $('.playerOne').addClass('jump');
-            // setTimeout(function () {
-            //     $('.playerOne').removeClass('jump');
-            // }, 150);
-            $('.playerOne').addClass('jump').css({
-                bottom: '+=8px'
-            });
-            // setTimeout(function() { $('.playerOne').css({bottom: '=60px'}) }, 100); 
-
-           
-            
-
-        }
+        // if (e.keyCode === 38) {
+        //     // $('.playerOne').addClass('jump');
+        //     // setTimeout(function () {
+        //     //     $('.playerOne').removeClass('jump');
+        //     // }, 150);
+        //     $('.playerOne').addClass('jump').css({
+        //         bottom: '+=8px'
+        //     });
+        //     // setTimeout(function() { $('.playerOne').css({bottom: '=60px'}) }, 100); 
+        // }
         if (e.keyCode === 37) {
-            $('.playerOne').addClass('walking').css({
+            p1.addClass('walking').css({
                 marginLeft: '-=8px'
             });
+            isBehind();
         }
 
         // a - punch
@@ -431,8 +453,8 @@ $(document).ready(function () {
 
     });
     $(document).on('keyup', function (e) {
-        $('.playerOne').removeClass('walking jump');
-        $('.playerOne').addClass('stance');
+        p1.removeClass('walking jump');
+        p1.addClass('stance');
     });
 
 
