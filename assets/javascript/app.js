@@ -6,14 +6,16 @@ $(document).ready(function () {
     var p2Health = 150;
 
     var p1Pos;
-    var p1 = $('.player1');
+    var p1 = $('.playerOne');
 
     var p2Pos;
-    var p2 = $('.player2');
+    var p2 = $('.playerTwo');
 
     // p1Pos = p1.offset();
     // p2Pos = p2.offset();
-    var keyRev;
+    var p1keyRev;
+    var p2keyRev;
+
 
     function Colision() {
         p1Pos = p1.offset();
@@ -37,13 +39,18 @@ $(document).ready(function () {
         if (player === 2) {
             p1 = $('.bob');
             p2 = $('.ken');
-            keyRev = sessionStorage.getItem("playerKey2");
-            console.log("has key "+ keyRev);
+            p1keyRev = sessionStorage.getItem("playerKey2");
+            p2keyRev = sessionStorage.getItem("playerKey1");
+            console.log("p1 has key " + p1keyRev);
+            console.log("p2 has key " + p2keyRev);
         } else {
             p2 = $('.bob');
             p1 = $('.ken');
-            keyRev = sessionStorage.getItem("playerKey1");
-            console.log("has key "+ keyRev);
+            p1keyRev = sessionStorage.getItem("playerKey1");
+            p2keyRev = sessionStorage.getItem("playerKey2");
+            console.log("p1 has key " + p1keyRev);
+            console.log("p2 has key " + p2keyRev);
+
 
         }
 
@@ -82,6 +89,7 @@ $(document).ready(function () {
             }
             setTimeout(function () {
                 p1.removeClass('punch');
+                p1.addClass('stance');
             }, 150);
         }
 
@@ -124,43 +132,7 @@ $(document).ready(function () {
 
     }
 
-    function reversekick() {
-        console.log("reversekick");
-        //check if function is called by player 1 or 2 
-        if (player === 2) {
-            p2.addClass("reversekick");
-            soundManager.play('huh2');
-            if (Colision() == true) {
-                soundManager.play('hit1');
-                p1.addClass('p1hit');
-                p1Health -= 10;
-                setTimeout(function () {
-                    p1.removeClass('p1hit');
-                }, 500);
-            }
-            setTimeout(function () {
-                p2.removeClass('reversekick');
-            }, 500);
-        } else {
-            p1.addClass("reversekick");
-            soundManager.play('huh2');
-            if (Colision() == true) {
-                soundManager.play('hit1');
-                p2.addClass('p2hit');
-                p2Health -= 10;
-                setTimeout(function () {
-                    p2.removeClass('p2hit');
-                }, 500);
-            }
-            setTimeout(function () {
-                p1.removeClass('reversekick');
-            }, 500);
-        }
-
-
-
-    }
-
+    
 
 
 
@@ -396,7 +368,72 @@ $(document).ready(function () {
 
     // Delete
     // sessionStorage.removeItem('algo');
+    $(document).on('keydown', function (e) {
 
+        //moves
+        if (e.keyCode === 39) {
+            $('.playerOne').addClass('walking').css({
+                marginLeft: '+=8px'
+            });
+
+
+        }
+        if (e.keyCode === 38) {
+            // $('.playerOne').addClass('jump');
+            // setTimeout(function () {
+            //     $('.playerOne').removeClass('jump');
+            // }, 150);
+            $('.playerOne').addClass('jump').css({
+                bottom: '+=8px'
+            });
+            // setTimeout(function() { $('.playerOne').css({bottom: '=60px'}) }, 100); 
+
+           
+            
+
+        }
+        if (e.keyCode === 37) {
+            $('.playerOne').addClass('walking').css({
+                marginLeft: '-=8px'
+            });
+        }
+
+        // a - punch
+        if (e.keyCode === 65) {
+            punch(1);
+        }
+
+        // s - Kick
+        if (e.keyCode === 83) {
+            kick();
+        }
+
+        //music
+        if (e.keyCode === 80) {
+            var backgroundMusic = soundManager.createSound({
+                id: 'music',
+                url: 'audio/musics/Guile.mp3'
+            });
+
+            backgroundMusic.pause();
+
+        }
+        if (e.keyCode === 79) {
+            var backgroundMusic = soundManager.createSound({
+                id: 'music',
+                url: 'audio/musics/Guile.mp3'
+            });
+
+            backgroundMusic.resume();
+
+        }
+
+
+    });
+    $(document).on('keyup', function (e) {
+        $('.playerOne').removeClass('walking jump');
+        $('.playerOne').addClass('stance');
+    });
 
 
 });
