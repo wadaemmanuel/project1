@@ -1,2 +1,3 @@
 # project1
 Project #1
+Our project is a game emulator of the classic "Street fighter", it features two player functionaltity and hit detection logic. Our game is for audiences of all ages, primarily for anyone who grew up playing button mashers and beat em' ups. Our "Street fighter" emulator is good way to pass the time and spend time with friends and family.But the benefits also include improved learning. A new study from the National Academy of Sciences shows that playing video games actually improves the learning capacity of the player. This makes our game a cheap and easy way to improve as an individual and as a community. 

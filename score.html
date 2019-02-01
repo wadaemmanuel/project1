@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+        <!-- Updated -->
+        <script type="text/javascript" src="assets/javascript/app.js"></script> 
+        <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
+        <title>Street fighter Emulator</title>
+    </head>
+    <body>
+        <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+            apiKey: "AIzaSyDg0VnCHvsgikUIDpR2bhuZBw-hbWssgYg",
+            authDomain: "score-d3360.firebaseapp.com",
+            databaseURL: "https://score-d3360.firebaseio.com",
+            projectId: "score-d3360",
+            storageBucket: "score-d3360.appspot.com",
+            messagingSenderId: "965419957157"
+            };
+            firebase.initializeApp(config);
+
+            var database = firebase.database();
+            
+            database.ref().push({
+                playerName: "liane",
+                score: 100,
+            });
+
+            database.ref().on("child_added", function (snapshot) {
+                playersInfo = $("#playersInfo");
+                scoreRow = $("<tr bg-primary text-white>");
+                scoreRow.append('<td>' + snapshot.val().playerName);
+                scoreRow.append('<td>' + snapshot.val().score);
+                playersInfo.prepend(scoreRow);
+            }, function (errorObject) {
+                console.log("The read failed: " + errorObject.code);
+            }); 
+        </script>
+        <table class="table table-striped border border-primary">
+            <thead>
+                <tr>
+                    <th class="bg-primary text-white" colspan="5"><h3>Players score</h3></th>
+                </tr>
+                <tr>
+                    <th>TPlayer name</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody id="playersInfo">
+            </tbody>
+        </table>
+    </body>
+</html>

@@ -4,31 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
+    
     <title>Street fighter Emulator</title>
 </head>
 <body>
-
-    <div class = "stage">
-        <div class = "playerOne"></div>
-        <div class = "playerTwo"></div>
-    </div>
-
-    <div class = "dashboard">
-        
-        <div class = "controls">
-            <h2>controls</h2>
-
-                <p>Punch: A /Reverse Kick: E /Hadoken: S</p>
-                <p>Kick: Z  /Tatsumaki: Q /Shoryuken: D</p>
-                <p>Jump: ▲ /Walk: ◀,► /Crouch: ▼</p>
+    <div class="container">
+        <div class = "stage">
+            <div class = "playerOne"></div>
+            <div class = "playerTwo"></div>
         </div>
 
-        <footer>
-                © 2019 team ginyu force
-        </footer>
+        <div id="time">
+                <p id="timer">00:00</p>
+            </div>
+        <div id="health1">
+            <p id="player1Health"></p><br>
+            <button id="addPlayer" type="button" class="btn btn-secondary">Player1</button>
+        </div>
+        <div id="playButton">
+            <button id="play" type="button" class="btn btn-secondary">Play</button>
+        </div>
+        <div id="health2">
+            <p id="player2Health"></p><br>
+            <button id="addPlayer2" type="button" class="btn btn-secondary">Player2</button>
+        </div>
+        <button id="reset" type="button" class="btn btn-secondary">Reset</button><br>
+
+        <button id="score" type="button" class="btn btn-secondary">Scores</button><br>
+
+        <div class = "controls">
+            <h2>controls</h2>
+            <p>Punch: A / </p>
+            <p>Kick: S  /</p>
+            <p>Music Pause: P/  Music Resume: O</p>
+            <p> /Walk: ◀,► </p>
+        </div>
+    
+        <footer class = foot>© 2019 group II</footer>
     </div>
+    
+    <script>
+        $(document).on('keydown', function(e) {
+    if (e.keyCode === 68) { // 68 is the letter D on the keyboard
+        $('.playerOne').addClass('punch');
+        setTimeout(function() { $playerOne.removeClass('punch'); }, 150);
+        console.log()
+    }
+    });
+    $(document).on('keydown', function(e) {
+    if (e.keyCode === 68) { // 68 is the letter D on the keyboard
+        $('.playerTwo').addClass('walkingTwo');
+        setTimeout(function() { $playerOne.removeClass('walkingTwo'); }, 150);
+        console.log()
+    }
+    });
+    </script> 
+  
 </body>
 </html>
+
+
 
 

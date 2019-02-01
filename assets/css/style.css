@@ -1,0 +1,289 @@
+#timer{
+    position:absolute;
+    bottom:600px;
+    left:650px;
+    font-family: 'VT323', monospace;
+    font-size: 100px;
+}
+ #health1{
+    position:absolute;
+    bottom:600px;
+    left:300px;
+}
+ #playButton{
+    position:absolute;
+    bottom:600px;
+    left:690px;
+}
+ #health2{
+    position:absolute;
+    bottom:600px;
+    left:900px;
+}
+
+body{
+    background-color:black;
+}
+.container{
+    width: 1200px;
+}
+.controls{
+    font-family: 'VT323', monospace;
+    color:white;
+}
+.stage {
+    background-image: url("Sf3ng-ryu1.png");
+    height: 700px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: relative;
+}
+#time{
+    position:absolute;
+    bottom:600px;
+    left:650px;
+    font-family: 'VT323', monospace;
+    font-size: 100px;
+    color: white;
+}
+#health1{
+    position:absolute;
+    bottom:600px;
+    left:400px;
+}
+#health2{
+    position:absolute;
+    bottom:600px;
+    left:950px;
+}
+
+h2{
+    font-size: 14px; 
+    margin: 5px
+}
+
+p{
+    font-size: 14px; 
+    margin: 5px
+}
+.foot{
+    font-size: 14px; 
+    text-align: center;
+    bottom: 20px;
+    color: red;
+}
+
+.playerOne{
+    position: absolute;
+    bottom: 60px; 
+    margin-left: 400px; 
+    width:70px; 
+    height:80px;
+    background-image: url('ken_playerOne.png');
+} 
+.playerTwo{
+    position: absolute;
+    bottom: 60px; 
+    margin-left: 600px; 
+    width:70px; 
+    height:80px;
+    background-image: url('Ken_playerTwo.png');
+    transform: scale(-1, 1);
+} 
+/* Stance */
+.stance {
+    -webkit-animation: stance 0.7s steps(4) infinite;
+    -moz-animation: stance 0.7s steps(4)  infinite;
+    -ms-animation: stance 0.7s steps(4)  infinite;
+    animation: stance 0.7s steps(4)  infinite;
+}
+@-webkit-keyframes stance {
+    from { background-position: 0px -80px; }
+    to { background-position: -280px -80px; }
+}
+@-moz-keyframes stance {
+    from { background-position: 0px -80px; }
+    to { background-position: -280px -80px; }
+}
+@-ms-keyframes stance {
+    from { background-position: 0px -80px; }
+    to { background-position: -280px -80px; }
+}
+@keyframes stance {
+    from { background-position: 0px -80px; }
+    to { background-position: -280px -80px; }
+}
+
+/* walking */
+.walking {
+    -webkit-animation: walking 0.7s steps(5) infinite;
+    -moz-animation: walking 0.7s steps(5)  infinite;
+    -ms-animation: walking 0.7s steps(5)  infinite;
+    animation: walking 0.7s steps(5)  infinite;
+}
+@-webkit-keyframes walking {
+    from { background-position: 0px -240px; }
+    to { background-position: -350px -240px; }
+}
+@-moz-keyframes walking {
+    from { background-position: 0px -240px; }
+    to { background-position: -350px -240px; }
+}
+@-ms-keyframes walking {
+    from { background-position: 0px -240px; }
+    to { background-position: -350px -240px; }
+}
+@keyframes walking {
+    from { background-position: 0px -240px; }
+    to { background-position: -350px -240px; }
+}
+
+/* jump */
+.jump {
+    -webkit-animation: jump 0.7s steps(5) infinite;
+    -moz-animation: jump 0.7s steps(5)  infinite;
+    -ms-animation: jump 0.7s steps(5)  infinite;
+    animation: jump 0.7s steps(5)  infinite;
+}
+@-webkit-keyframes jump {
+    from { background-position: 0px -240px; }
+    to { background-position: -350px -240px; }
+}
+@-moz-keyframes jump {
+    from { background-position: 0px -240px; }
+    to { background-position: -350px -240px; }
+}
+@-ms-keyframes jump {
+    from { background-position: 0px -240px; }
+    to { background-position: -350px -240px; }
+}
+@keyframes jump {
+    from { background-position: 0px -240px; }
+    to { background-position: -350px -240px; }
+}
+
+/* punch */
+
+.punch {
+    -webkit-animation: punch 0.2s steps(3) infinite;
+    -moz-animation: punch 0.2s steps(3)  infinite;
+    -ms-animation: punch 0.2s steps(3)  infinite;
+    animation: punch 0.2s steps(3)  infinite;
+}
+@-webkit-keyframes punch {
+    from { background-position: 0px -160px; }
+    to { background-position: -215px -160px; } 
+}
+@-moz-keyframes punch {
+    from { background-position: 0px -160px; }
+    to { background-position: -215px -160px; }
+}
+@-ms-keyframes punch {
+    from { background-position: 0px -160px; }
+    to { background-position: -215px -160px; }
+}
+@keyframes punch {
+    from { background-position: 0px -160px; }
+    to { background-position: -215px -160px; }
+}
+
+/* kick */
+
+.kick {
+    -webkit-animation: kick 0.5s steps(5) infinite;
+    -moz-animation: kick 0.5s steps(5)  infinite;
+    -ms-animation: kick 0.5s steps(5)  infinite;
+    animation: kick 0.5s steps(5)  infinite;
+}
+@-webkit-keyframes kick {
+    from { background-position: 0px -480px; }
+    to { background-position: -350px -480px; } 
+}
+@-moz-keyframes kick {
+    from { background-position: 0px -480px; }
+    to { background-position: -350px -480px; }
+}
+@-ms-keyframes kick {
+    from { background-position: 0px -480px; }
+    to { background-position: -350px -480px; }
+}
+@keyframes kick {
+    from { background-position: 0px -480px; }
+    to { background-position: -350px -480px; }
+}
+/* kick_player2 */
+
+.kickTwo {
+    -webkit-animation: kicktwo 0.5s steps(5) infinite;
+    -moz-animation: kicktwo 0.5s steps(5)  infinite;
+    -ms-animation: kicktwo 0.5s steps(5)  infinite;
+    animation: kicktwo 0.5s steps(5)  infinite;
+}
+@-webkit-keyframes kickTwo {
+    from { background-position: 0px -318px; }
+    to { background-position: -px -318px; } 
+}
+@-moz-keyframes kickTwo {
+    from { background-position: 0px -480px; }
+    to { background-position: -350px -480px; }
+}
+@-ms-keyframes kickTwo {
+    from { background-position: 0px -480px; }
+    to { background-position: -350px -480px; }
+}
+@keyframes kickTwo {
+    from { background-position: 0px -480px; }
+    to { background-position: -350px -480px; }
+}
+/* punch_player2 */
+
+.punchTwo {
+    -webkit-animation: punchTwo 0.2s steps(3) infinite;
+    -moz-animation: punchTwo 0.2s steps(3)  infinite;
+    -ms-animation: punchTwo 0.2s steps(3)  infinite;
+    animation: punchTwo 0.2s steps(3)  infinite;
+}
+@-webkit-keyframes punchTwo {
+    from { background-position: 0px -160px; }
+    to { background-position: -215px -160px; } 
+}
+@-moz-keyframes punchTwo {
+    from { background-position: 0px -160px; }
+    to { background-position: -215px -160px; }
+}
+@-ms-keyframes punchTwo {
+    from { background-position: 0px -160px; }
+    to { background-position: -215px -160px; }
+}
+@keyframes punchTwo {
+    from { background-position: 0px -160px; }
+    to { background-position: -215px -160px; }
+}
+
+/* walking_png */
+.walkingTwo {
+    -webkit-animation: walkingTwo 0.7s steps(5) infinite;
+    -moz-animation: walkingTwo 0.7s steps(5)  infinite;
+    -ms-animation: walkingTwo 0.7s steps(5)  infinite;
+    animation: walkingTwo 0.7s steps(5)  infinite;
+}
+@-webkit-keyframes walkingTwo {
+    from { background-position: 0px -240px; }
+    to { background-position: -350px -240px; }
+}
+@-moz-keyframes walkingTwo {
+    from { background-position: 0px -240px; }
+    to { background-position: -350px -240px; }
+}
+@-ms-keyframes walkingTwo {
+    from { background-position: 0px -240px; }
+    to { background-position: -350px -240px; }
+}
+@keyframes walkingTwo {
+    from { background-position: 0px -240px; }
+    to { background-position: -350px -240px; }
+}
+
+
+
