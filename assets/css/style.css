@@ -20,7 +20,6 @@
     bottom:600px;
     left:900px;
 }
-
 body{
     background-color:black;
 }
@@ -28,6 +27,10 @@ body{
     width: 1200px;
 }
 .controls{
+    position: absolute;
+    float: left;
+    top: 500px;
+    left:5px;
     font-family: 'VT323', monospace;
     color:white;
 }
@@ -71,7 +74,7 @@ p{
     font-size: 14px; 
     text-align: center;
     bottom: 20px;
-    color: red;
+    color: white;
 }
 
 .playerOne{
