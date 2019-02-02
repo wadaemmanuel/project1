@@ -588,7 +588,7 @@ $(document).ready(function () {
 
     //Keybord
     $(document).on('keydown', function (e) {
-        if (player === 1) {
+        if (player === 1 && gamestart === true) {
 
             //moves
             if (e.keyCode === 39) {
@@ -701,14 +701,10 @@ $(document).ready(function () {
 
             //music
             if (e.keyCode === 80) {
-
-
                 backgroundMusic.pause();
 
             }
             if (e.keyCode === 79) {
-
-
                 backgroundMusic.resume();
 
             }
