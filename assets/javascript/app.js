@@ -1,4 +1,7 @@
 $(document).ready(function () {
+
+
+    
     console.log("start");
     var player;
 
@@ -101,12 +104,22 @@ $(document).ready(function () {
                 p2.removeClass('punch');
             }, 150);
         } else {
+            
             p1.addClass("punch");
             soundManager.play('huh1');
             if (Colision() == true) {
                 soundManager.play('hit1');
                 p2.addClass('p2hit');
-                p2Health -= 10;
+
+                // reference = $("#player2").attr("player");
+                // health = parseInt($("#player2" + "Health").text());
+                // player = "player2";
+
+                reference = $("#" + sessionStorage.getItem('playerName')).attr("player");
+                health = parseInt($("#" + sessionStorage.getItem('playerName') + "Health").text());
+                player = sessionStorage.getItem('playerName');
+                updateHealth(player, reference, health);
+
                 setTimeout(function () {
                     p2.removeClass('p2hit');
                 }, 500);
@@ -157,241 +170,307 @@ $(document).ready(function () {
     }
 
 
+        // Initialize Firebase
+
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDG341Lm7hpD2X1Yf1Lvm3RO3VeSl5Ap84",
+    authDomain: "street-fighter-emulator.firebaseapp.com",
+    databaseURL: "https://street-fighter-emulator.firebaseio.com",
+    projectId: "street-fighter-emulator",
+    storageBucket: "street-fighter-emulator.appspot.com",
+    messagingSenderId: "906826297493"
+  };
+  firebase.initializeApp(config);
 
 
+//Fullscreen API 
+var es_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+var es_opera  = navigator.userAgent.toLowerCase().indexOf('opera ') > -1;
+var es_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
 
-
-    // });
-
-
-
-
-
-    // $(document).ready(function() {
-    // Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyCA4Lzktcmg3jy4g8wClIYjppqD8AVYDOU",
-        authDomain: "tabrawl.firebaseapp.com",
-        databaseURL: "https://tabrawl.firebaseio.com",
-        projectId: "tabrawl",
-        storageBucket: "tabrawl.appspot.com",
-        messagingSenderId: "43689640589"
-    };
-    firebase.initializeApp(config);
-
-    var countStart = 300;
-    var health = 100;
-    var minutes, seconds, downloadTimer, playerName, caracterName, playerRef, reference, playerCount, topPosition, leftPosition;
-    var database = firebase.database();
-
-
-
-    function countdown() {
-        downloadTimer = setInterval(function () {
-            minutes = parseInt(countStart / 60, 10)
-            seconds = parseInt(countStart % 60, 10);
-
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
-
-            $("#timer").text("Time remaining: " + minutes + ":" + seconds);
-
-            if (--countStart < 0) {
-                clearInterval(downloadTimer);
-                $("#timer").text("All done!");
+function toggleFullScreen() {
+    if((es_chrome)||(es_opera)){
+        if (!document.webkitFullscreenElement) {
+            document.documentElement.webkitRequestFullscreen();
+        } else {
+            if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen(); 
             }
-        }, 1000);
+        }
     }
-
-    function addPlayer(playerName, caracterName) {
-
-        leftPosition = 10;
-        topPosition = 20;
-
-        database.ref().push({
-            playerName: playerName,
-            health: health,
-            caracterName: caracterName,
-            topPosition: topPosition,
-            leftPosition: leftPosition
-        });
+    if(es_firefox){          
+        if (!document.mozFullScreenElement) {
+            document.documentElement.mozRequestFullScreen();
+        } else {
+            if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen(); 
+            }
+        }
     }
+} 
 
-    $(".addPlayer").on("click", function () {
-        addPlayer(playerName, caracterName);
-        var x = $(this).val();
-        playerSel(x);
-    });
+document.addEventListener("keypress", function(e) {
+    console.log(e.keyCode );
+    if (e.keyCode === 13) {//Enter
+        toggleFullScreen();
+    }
+}, false);  
 
-    $("#player1").on("click", function () {
-        reference = $(this).attr("player");
-        console.log(reference);
-        health = $("#player1Health").val() - 10;
-        console.log(health);
+$(".playerOne").attr("hidden", true);//change
+$(".playerTwo").attr("hidden", true);//change
 
-        if (health <= 0) {
-            playerRef.update({
-                "health": health
-            });
-            $("#player1Health").val(health);
-            $("#player1").attr("disabled", true);
-            $("#player2").attr("disabled", true);
-            console.log("game over");
-            console.log("Player 2 wins");
-        } else {
-            playerRef = database.ref(reference);
+// var countStart = 300;
+var countStart = 10;
+var health = 100;
+var minutes, seconds, downloadTimer, playerName, playerRef, reference, playerCount, position, player1Key, player1Name;
+var database = firebase.database();
 
-            playerRef.update({
-                "health": health
-            });
-            $("#player1Health").val(health);
+//Timer function
+function countdown(){
+    downloadTimer = setInterval(function () {
+        minutes = parseInt(countStart / 60, 10)
+        seconds = parseInt(countStart % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        $("#timer").text(minutes + ":" + seconds);
+
+        if (--countStart < 0) {
+            clearInterval(downloadTimer);
+            $(".playerOne").attr("hidden", true);//change
+            $(".playerTwo").attr("hidden", true);//change
+            if(parseInt($("#player2Health").text()) === parseInt($("#player1Health").text())){
+                console.log("tie");
+            }else{
+                var config = {
+                    apiKey: "AIzaSyDg0VnCHvsgikUIDpR2bhuZBw-hbWssgYg",
+                    authDomain: "score-d3360.firebaseapp.com",
+                    databaseURL: "https://score-d3360.firebaseio.com",
+                    projectId: "score-d3360",
+                    storageBucket: "score-d3360.appspot.com",
+                    messagingSenderId: "965419957157"
+                };
+                firebase.initializeApp(config);
+    
+                var database1 = firebase.database();
+                if(parseInt($("#player1Health").text()) > parseInt($("#player2Health").text())){
+                    console.log("Player 1 wins");
+                    
+                    database1.ref().push({
+                        playerName: "player1",
+                        score: parseInt($("#player1Health").text())
+                    });
+                }else{
+                    console.log("Player 2 wins");
+                    database1.ref().push({
+                        playerName: "player2",
+                        score: parseInt($("#player2Health").text())
+                    });
+                }
+            }
         }
+    }, 1000);
+}
 
+  $("#play").on("click", function () {
+    countdown();
+    $("#player1").attr("disabled", false);
+    $("#player2").attr("disabled", false);
+    $("#play").attr("disabled", true);
+  });
+
+//Add players in firebase
+function addPlayer(playerName) {
+    position = 10;
+
+    database.ref().push({
+        playerName: playerName,
+        health: health,
+        position: position
     });
+}
 
-    $("#player2").on("click", function () {
-        reference = $(this).attr("player");
-        console.log(reference);
-        health = $("#player2Health").val() - 10;
-        console.log(health);
+$("#addPlayer").on("click", function () {
+    addPlayer(playerName);
+    sessionStorage.setItem('playerName', "player1");
+});
 
-        if (health <= 0) {
-            playerRef.update({
-                "health": health
-            });
-            $("#player2Health").val(health);
-            $("#player1").attr("disabled", true);
-            $("#player2").attr("disabled", true);
-            console.log("game over");
-            console.log("Player 1 wins");
-        } else {
-            playerRef = database.ref(reference);
+$("#addPlayer2").on("click", function () {
+    addPlayer(playerName);
+    sessionStorage.setItem('playerName', "player2");
+});
 
-            playerRef.update({
-                "health": health
-            });
-            $("#player2Health").val(health);
-        }
-
-    });
-
-    $("#updatePosition").on("click", function () {
-        reference = $("#playerUpdate").val().trim();
-        //Less 10 if is fireball or less 5 if is phisic
-        leftPosition = 20;
-        topPosition = 30;
-
-        playerRef = database.ref(reference);
-
-        playerRef.update({
-            "leftPosition": leftPosition,
-            "topPosition": topPosition
-        });
-
-    });
-
-    $("#deletePlayer").on("click", function () {
-        reference = $("#playerDelete").val().trim();
-        playerRef = database.ref(reference);
-
-        playerRef.remove();
-    });
-
-    database.ref().on("value", function (snapshot) {
-        playerCount = snapshot.numChildren();
-        console.log(playerCount);
-        switch (playerCount) {
-            case 0: //0 players, insert player1, start button inactive
-                playerName = "player1";
-                caracterName = "carcter1";
-                $("#playerName").attr("value", playerName);
-                $("#addPlayer").attr("disabled", false);
-                $("#addPlayer2").attr("disabled", true);
-                $("#play").attr("disabled", true);
-                $("#player1").attr("disabled", true);
-                $("#player2").attr("disabled", true);
-                $("#reset").attr("disabled", true);
-                break;
-            case 1: //1 player, insert 2nd player, start button inactive
-                $("#playerName").attr("value", playerName);
-                $("#play").attr("disabled", true);
-                $("#player1").attr("disabled", true);
-                $("#player2").attr("disabled", true);
-                $("#reset").attr("disabled", false);
-                break;
-            case 2: //2 players, start button active
-                $("#playerName").attr("value", "");
-                $("#addPlayer").attr("disabled", true);
-                $("#addPlayer2").attr("disabled", true);
-                $("#play").attr("disabled", false);
-                // $("#player1").attr("disabled", true);
-                // $("#player2").attr("disabled", true);
-                $("#reset").attr("disabled", false);
-                break;
-        }
-    });
-
-    database.ref().on("child_added", function (snapshot) {
-
-        health = snapshot.val().health;
-        console.log(snapshot.val().playerName);
-        if (snapshot.val().playerName === "player1") {
-            playerName = "player2";
-            caracterName = "carcter2";
-            $("#addPlayer").attr("disabled", true);
-            $("#addPlayer2").attr("disabled", false);
-            $("#player1").addClass("player");
-            $("#player1").attr("player", snapshot.key);
-            $("#player1Health").val(snapshot.val().health);
-            sessionStorage.setItem('playerKey1', snapshot.key);
-            sessionStorage.setItem('playerNeame1', snapshot.val().playerName);
-
-        } else {
+database.ref().on("value", function(snapshot) {
+    playerCount = snapshot.numChildren();
+    console.log(playerCount);
+    switch(playerCount){
+        case 0://0 players, insert player1, start button inactive
             playerName = "player1";
-            caracterName = "carcter1";
+            $("#playerName").attr("value", playerName);
             $("#addPlayer").attr("disabled", false);
             $("#addPlayer2").attr("disabled", true);
-            $("#player2").addClass("player");
-            $("#player2").attr("player", snapshot.key);
-            $("#player2Health").val(snapshot.val().health);
-            sessionStorage.setItem('playerKey2', snapshot.key);
-            sessionStorage.setItem('playerNeame2', snapshot.val().playerName);
-        }
-        console.log(snapshot.key);
-        // localStorage.setItem('playerKey', snapshot.key);
-        // localStorage.setItem('playerNeame', snapshot.val().playerName);
-        console.log(snapshot.val().health);
-        console.log(snapshot.val().caracterName);
-        console.log(snapshot.val().topPosition);
-        console.log(snapshot.val().leftPosition);
-        $("#health").text(health);
-    }, function (errorObject) {
-        console.log("The read failed: " + errorObject.code);
+            $("#play").attr("disabled", true);
+            $("#player1").attr("disabled", true);
+            $("#player2").attr("disabled", true);
+            $("#reset").attr("disabled", true);
+            break;
+        case 1://1 player, insert 2nd player, start button inactive
+            $("#playerName").attr("value", playerName);
+            $("#play").attr("disabled", true);
+            $("#player1").attr("disabled", true);
+            $("#player2").attr("disabled", true);
+            $("#reset").attr("disabled", false);
+            break;
+        case 2://2 players, start button active
+            $("#playerName").attr("value", "");
+            $("#addPlayer").attr("disabled", true);
+            $("#addPlayer2").attr("disabled", true);
+            $("#play").attr("disabled", false);
+            $("#reset").attr("disabled", false);
+            break;
+    }   
+});
+
+database.ref().on("child_added", function(snapshot) {
+    health = snapshot.val().health;
+    console.log(snapshot.val().playerName);
+    if(snapshot.val().playerName === "player1"){
+        playerName = "player2";
+        $("#addPlayer").attr("disabled", true);
+        $("#addPlayer2").attr("disabled", false);
+        // $(".playerOne").append("<img src = 'assets/images/player1.jpg' alt='player1' id = 'player1'>");//change
+        $("#player1").addClass("player");
+        $(".playerOne").attr("hidden", false);//change
+        $("#player1").attr("player", snapshot.key);
+        $("#player1Health").text(snapshot.val().health);
+    }else{
+        $("#addPlayer").attr("disabled", false);
+        $("#addPlayer2").attr("disabled", true);
+        // $(".playerTwo").append("<img src = 'assets/images/player2.jpg' alt='player2' id = 'player2'>");//change
+        $("#player2").addClass("player");
+        $(".playerTwo").attr("hidden", false);//change
+        $("#player2").attr("player", snapshot.key);
+        //hide the divs
+        $("#player2Health").text(snapshot.val().health);
+    }
+    console.log(snapshot.key);
+    console.log(snapshot.val().health);
+    console.log(snapshot.val().position);   
+  }, function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+  database.ref().on("child_changed", function(snapshot) {
+    if(snapshot.val().playerName === "player1"){
+        $("#player1Health").text(snapshot.val().health);
+    }else{
+        $("#player2Health").text(snapshot.val().health);
+    }
+});
+//Update health in firebase
+function updateHealth(player, reference, health) {
+    health = health - 10;
+
+    playerRef = database.ref(reference);
+
+    playerRef.update ({
+        "health": health
     });
 
-    $("#reset").on("click", function () {
-        database.ref().remove();
-    });
-
-    window.onunload = function () {
-        database.ref().remove();
+    if(player === "player1"){
+        console.log("player1" + player);
+        $("#player1Health").text(health);
+    }else{
+        console.log("player2" + player);
+        $("#player2Health").text(health);
     }
 
-    $("#play").on("click", function () {
-        countdown();
-        $("#player1").attr("disabled", false);
-        $("#player2").attr("disabled", false);
+    if(health <= 0){
+        console.log("game over");
+        $("#player1").attr("disabled", true);
+        $("#player2").attr("disabled", true);
+    }
+    
+}
+
+    //Update position in firebase
+    function updatePosition(player, reference, position) { 
+        playerRef = database.ref(reference);
+
+        playerRef.update ({
+            "position": position
+        });            
+    }
+
+//Update position in firebase
+$("#updatePositionPlayer1").on("click", function () {
+    reference = $("#player1").attr("player");
+    console.log(reference);
+    leftPosition = 10;
+    topPosition = 10;
+
+    playerRef = database.ref(reference);
+
+    playerRef.update ({
+        "leftPosition": leftPosition,
+        "topPosition": topPosition
     });
+    
+});
 
-    // Set
-    // sessionStorage.setItem('algo', 'Guarde algo');
+$("#updatePositionPlayer2").on("click", function () {
+    reference = $("#player2").attr("player");
+    console.log(reference);
+    leftPosition = 20;
+    topPosition = 20;
 
+    playerRef = database.ref(reference);
 
-    // // Get
-    // console.log(sessionStorage['algo']);
+    playerRef.update ({
+        "leftPosition": leftPosition,
+        "topPosition": topPosition
+    });
+    
+});
 
-    // Delete
-    // sessionStorage.removeItem('algo');
+$("#reset").on("click", function () {
+    database.ref().remove();
+    clearInterval(downloadTimer);
+    $("#timer").text("0:00");
+    $("#player2Health").text("");
+    $("#player1Health").text("");
+    health = 100;
+});
+
+  window.onunload = function () {
+    database.ref().remove();
+    sessionStorage.clear();
+  }
+
+  $(document).on('keydown', function(e) {
+    if (e.keyCode === 68) { // 68 is the letter D on the keyboard
+        reference = $("#" + sessionStorage.getItem('playerName')).attr("player");
+        health = parseInt($("#" + sessionStorage.getItem('playerName') + "Health").text());
+        player = sessionStorage.getItem('playerName');
+        updateHealth(player, reference, health);
+    }
+});
+
+$(document).on('keydown', function(e) {
+    if (e.keyCode === 74) { // 74 is the letter J on the keyboard
+        reference = $("#" + sessionStorage.getItem('playerName')).attr("player");
+        position = ($("#" + sessionStorage.getItem('playerName')).offset().left);
+        player = sessionStorage.getItem('playerName');
+        updatePosition(player, reference, position);
+    }
+});
+
+$("#score").on("click", function () {
+    window.open('score.html','popUpWindow','height=500,width=400,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes');
+});
+
+    //Keybord
     $(document).on('keydown', function (e) {
 
         //moves

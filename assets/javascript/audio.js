@@ -10,17 +10,17 @@ soundManager.onready(function() {
         id:'music',
         url:'./assets/audio/musics/Guile.mp3'
     });
-    backgroundMusic.play({ volume:70 });
-    $('.pause').on('click', function(){
-        var $this = $(this);
-        if ($this.hasClass('play')) {
-            $this.removeClass('play');
-            backgroundMusic.resume();
-        } else {
-            $this.addClass('play');
-            backgroundMusic.pause();
-        }
-    });
+    // backgroundMusic.play({ volume:70 });
+    // $('.pause').on('click', function(){
+    //     var $this = $(this);
+    //     if ($this.hasClass('play')) {
+    //         $this.removeClass('play');
+    //         backgroundMusic.resume();
+    //     } else {
+    //         $this.addClass('play');
+    //         backgroundMusic.pause();
+    //     }
+    // });
 
     // hado/shoryu ken
     // ------------------------------- /

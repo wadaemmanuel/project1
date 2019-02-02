@@ -1,70 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/style.css">
-
-
-    <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-    <script src="assets/javascript/soundmanager2-jsmin.js"></script>
-    <script src="assets/javascript/audio.js"></script>
-    <script type="text/javascript" src="assets/javascript/app.js"></script>
-
-    <title>Street fighter Emulator</title>
-</head>
-
-<body>
-    <a class="pause">hi</a>
-    <div class="container">
-        <div class="stage">
-            <div class="playerOne"></div>
-            <div class="playerTwo"></div>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <link rel="stylesheet" href="assets/css/style.css">
+        <!-- Updated -->
+        <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+        <script src="assets/javascript/soundmanager2-jsmin.js"></script>
+        <script src="assets/javascript/audio.js"></script>
+        <script type="text/javascript" src="assets/javascript/app.js"></script> 
+        <title>Street fighter Emulator</title>
+    </head>
+    <body>
+        <div class = "stage">
+                <div class = "playerOne" id = "player1"></div>
+                <div class = "playerTwo" id = "player2"></div>
         </div>
+        <!-- Updated -->
+        <div id="time">
+            <p id="timer">00:00</p>
+        </div>
+        <div id="health1">
+            <p id="player1Health"></p><br>
+            <button id="addPlayer" type="button" class="btn btn-secondary">Player1</button>
+        </div>
+        <div id="playButton">
+            <button id="play" type="button" class="btn btn-secondary">Play</button>
+        </div>
+        <div id="health2">
+            <p id="player2Health"></p><br>
+            <button id="addPlayer2" type="button" class="btn btn-secondary">Player2</button>
+        </div>
+        <button id="reset" type="button" class="btn btn-secondary">Reset</button><br>
+        
+        <button id="score" type="button" class="btn btn-secondary">Scores</button><br>
+        
 
-        <div id="time">0:00</div>
-
-        <div id="health1">player1 health</div>
-        <div id="health2">player2 health</div>
-
-        <div class="controls">
+        <div class = "controls">
             <h2>controls</h2>
             <p>Punch: A /Reverse Kick: D </p>
-            <p>Kick: W /Tatsumaki: S </p>
+            <p>Kick: W  /Tatsumaki: S </p>
             <p>Jump: ▲ /Walk: :arrow_backward:,► </p>
-            <button id="addPlayer" class="addPlayer" value="1">Add Player1</button><br>
-            <button id="addPlayer2" class="addPlayer" value="2">Add Player2</button><br>
         </div>
 
-        <footer class=foot>© 2019 group II</footer>
-    </div>
+        <footer class = "foot">© 2019 team x</footer>
 
-    <!-- <script>
-       $(document).on('keydown', function(e) {
-   if (e.keyCode === 68) { // 68 is the letter D on the keyboard
-       $('.playerOne').addClass('punch');
-       setTimeout(function() { $playerOne.removeClass('punch'); }, 150);
-       console.log()
-   }
-   });
-   $(document).on('keydown', function(e) {
-   if (e.keyCode === 68) { // 68 is the letter D on the keyboard
-       $('.playerTwo').addClass('stance');
-       setTimeout(function() { $playerOne.removeClass('walkingTwo'); }, 150);
-       console.log()
-   }
-   });
-   </script> -->
+        <!-- <script>
+            $(document).on('keydown', function(e) {
+                if (e.keyCode === 68) { // 68 is the letter D on the keyboard
+                    $('.playerOne').addClass('punch');
+                    setTimeout(function() { $playerOne.removeClass('punch'); }, 150);
+                }
+            });
+            $(document).on('keydown', function(e) {
+                if (e.keyCode === 68) { // 68 is the letter D on the keyboard
+                    $('.playerTwo').addClass('walkingTwo');
+                    setTimeout(function() { $playerOne.removeClass('walkingTwo'); }, 150);
+                    console.log()
+                }
+            });
+        </script> -->
 
-</body>
-
+    </body>
 </html>

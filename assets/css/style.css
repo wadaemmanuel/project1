@@ -14,7 +14,8 @@ body{
     background-size: contain;
     position: relative;
  }
- #time{
+ /* Updated */
+ #timer{
     position:absolute;
     bottom:600px;
     left:650px;
@@ -25,6 +26,11 @@ body{
     position:absolute;
     bottom:600px;
     left:400px;
+ }
+ #playButton{
+    position:absolute;
+    bottom:600px;
+    left:650px;
  }
  #health2{
     position:absolute;
@@ -253,3 +259,10 @@ body{
     from { background-position: 0px -240px; }
     to { background-position: -350px -240px; }
  }
+
+
+/* 
+Collapse 
+Message Input
+
+Message Emmanuel Wada, Liane Suarez Curbelo */
