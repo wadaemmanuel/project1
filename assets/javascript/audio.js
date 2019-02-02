@@ -6,45 +6,9 @@ soundManager.setup({
 
 soundManager.onready(function() {
     console.log("audio2");
-    var backgroundMusic = soundManager.createSound({
-        id:'music',
-        url:'./assets/audio/musics/Guile.mp3'
-    });
-    // backgroundMusic.play({ volume:70 });
-    // $('.pause').on('click', function(){
-    //     var $this = $(this);
-    //     if ($this.hasClass('play')) {
-    //         $this.removeClass('play');
-    //         backgroundMusic.resume();
-    //     } else {
-    //         $this.addClass('play');
-    //         backgroundMusic.pause();
-    //     }
-    // });
 
-    // hado/shoryu ken
-    // ------------------------------- /
-    soundManager.createSound({
-        id:'hado',
-        url:'./assets/audio/hado-shoryu_ken/hado.wav'
-    });
-    soundManager.createSound({
-        id:'shoryu',
-        url:'./assets/audio/hado-shoryu_ken/shoryu.wav'
-    });
-    soundManager.createSound({
-        id:'ken',
-        url:'./assets/audio/hado-shoryu_ken/ken.wav'
-    });
 
-    // tatsumaki senpuu kyaku
-    // ------------------------------- /
-    soundManager.createSound({
-        id:'tatsumaki',
-        url:'./assets/audio/tatsumaki-senpuu-kyaku.wav'
-    });
-
-    // you win/loose
+    // you win or loose
     // ------------------------------- /
     soundManager.createSound({
         id:'you',
@@ -110,37 +74,7 @@ soundManager.onready(function() {
         url:'./assets/audio/hits/kung_fu_punch-Mike_Koenig-2097967259.mp3'
     });
 
-    // swooshes
-    // ------------------------------- /
-    soundManager.createSound({
-        id:'swooch1',
-        url:'./assets/audio/swooshes/Swoosh 1-SoundBible.com-231145780.mp3'
-    });
-    soundManager.createSound({
-        id:'swooch2',
-        url:'./assets/audio/swooshes/Swoosh 3-SoundBible.com-1573211927.mp3'
-    });
-    soundManager.createSound({
-        id:'swooch3',
-        url:'./assets/audio/swooshes/Swooshing-SoundBible.com-1214884243.mp3'
-    });
+    
     
 
 });
-
-var youWin = function(){
-    soundManager.play('you', {
-        multiShotEvents: true, 
-        onfinish:function() {
-            soundManager.play('win');
-        }
-    });
-};
-var youLoose = function(){
-    soundManager.play('you', {
-        multiShotEvents: true, 
-        onfinish:function() {
-            soundManager.play('loose');
-        }
-    });
-};
