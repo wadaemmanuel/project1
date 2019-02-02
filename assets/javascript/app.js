@@ -272,6 +272,13 @@ $(document).ready(function () {
                     var database1 = firebase.database();
                     if (parseInt($("#player1Health").text()) > parseInt($("#player2Health").text())) {
                         console.log("Player 1 wins");
+                        
+                        if (sessionStorage.getItem('playerName') === "player1") {
+                            youWin();
+                        }
+                        if (sessionStorage.getItem('playerName') === "player2") {
+                            youLoose();
+                        }
 
                         database1.ref().push({
                             playerName: "player1",
@@ -279,6 +286,12 @@ $(document).ready(function () {
                         });
                     } else {
                         console.log("Player 2 wins");
+                        if (sessionStorage.getItem('playerName') === "player2") {
+                            youWin();
+                        }
+                        if (sessionStorage.getItem('playerName') === "player1") {
+                            youLoose();
+                        }
                         database1.ref().push({
                             playerName: "player2",
                             score: parseInt($("#player2Health").text())
@@ -430,6 +443,9 @@ $(document).ready(function () {
         }
 
     }
+
+
+  
     database.ref().on("child_changed", function (snapshot) {
         $("#timer").text(snapshot.val().time); //change
 
@@ -439,8 +455,7 @@ $(document).ready(function () {
             gamestart = true;
         }
 
-        
-
+     
         if (snapshot.val().playerName === "player1") {
             $("#player1Health").text(snapshot.val().health);
         } else {
@@ -640,7 +655,7 @@ $(document).ready(function () {
         if (player === 2 && gamestart === true) {
             //moves
             if (e.keyCode === 39) {
-                p1.addClass('walking').css({
+                $(".playerTwo").addClass('walking').css({
                     marginLeft: '+=8px'
                 });
                 reference = $("#player2").attr("player");
@@ -652,7 +667,7 @@ $(document).ready(function () {
             }
 
             if (e.keyCode === 37) {
-                p1.addClass('walking').css({
+                $(".playerTwo").addClass('walking').css({
                     marginLeft: '-=8px'
                 });
                 reference = $("#player2").attr("player");
