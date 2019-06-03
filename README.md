@@ -4,8 +4,6 @@ This is an emulator of the classic street fighter game. We used css to animate t
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
 1) 
 
 ## Built With
