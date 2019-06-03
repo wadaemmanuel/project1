@@ -14,7 +14,7 @@ This is an emulator of the classic street fighter game. We used css to animate t
 * Javascript- game logic
 * CSS- User interface
 
-## Contributors
+## Authors
 
 * **Linae Suarez - Backend** 
 * **Peter Winston - Backend** 
