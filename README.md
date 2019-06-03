@@ -13,6 +13,7 @@ This is an emulator of the classic street fighter game. We used css to animate t
 * jQuery- player command
 * Javascript- game logic
 * CSS- User interface
+* firebase- database
 
 ## Authors
 
