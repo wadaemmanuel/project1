@@ -22,3 +22,5 @@ This is an emulator of the classic street fighter game. We used css to animate t
 
 * an special thanks for the assets/sound used in this project from: https://github.com/jkneb/street-fighter-css
 
+* **project link** 
+https://wadaemmanuel.github.io/project1/
