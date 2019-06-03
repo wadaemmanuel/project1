@@ -4,7 +4,9 @@ This is an emulator of the classic street fighter game. We used css to animate t
 
 ## Getting Started
 
-1) 
+1) select player 1 or 2
+2) press start
+3) play until time is up 
 
 ## Built With
 
@@ -22,5 +24,5 @@ This is an emulator of the classic street fighter game. We used css to animate t
 
 * an special thanks for the assets/sound used in this project from: https://github.com/jkneb/street-fighter-css
 
-* **project link** 
+## project link
 https://wadaemmanuel.github.io/project1/
