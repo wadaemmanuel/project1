@@ -22,5 +22,5 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
+* an special thanks for the assets/sound used in this project from: https://github.com/jkneb/street-fighter-css
 
