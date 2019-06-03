@@ -5,7 +5,7 @@ This is an emulator of the classic street fighter game. We used css to animate t
 ## Getting Started
 
 1) select player 1 or 2
-2) press start
+2) press play at the center of the screen 
 3) play until time is up 
 
 ## Built With
