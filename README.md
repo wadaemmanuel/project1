@@ -10,9 +10,9 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Built With
 
-* [jQuery]- player command
-* [Javascript]- game logic
-* [CSS]- User interface
+* jQuery- player command
+* Javascript- game logic
+* CSS- User interface
 
 ## Contributors
 
